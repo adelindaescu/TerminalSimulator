@@ -1,10 +1,19 @@
-#include<stdio.h>
+#include <string.h>
+#include <stdio.h>
 
-int main(int argc, char** argv) {
-    int i = 0;
 
-    for (i = 0; i < argc; i++) {
-        printf("%s\n", argv[i]);
+int main() {
+    char input[255];
+    char* command;
+
+    printf("$> ");
+    fgets(input, sizeof(input), stdin);
+
+    command = strtok(input, " ");
+
+    while (command !=  NULL) {
+        printf("%s\n", command);
+        command = strtok(NULL, " ");
     }
 
     return 0;
