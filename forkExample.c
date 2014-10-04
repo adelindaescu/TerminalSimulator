@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <sys/wait.h>
 
-int main()
+int forkExample()
 {
     int* status;
     int pid;

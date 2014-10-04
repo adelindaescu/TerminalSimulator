@@ -1,20 +1,27 @@
 #include <string.h>
 #include <stdio.h>
 
-
 int main() {
     char input[255];
-    char* command;
+    char *command;
 
-    printf("$> ");
-    fgets(input, sizeof(input), stdin);
+    while (1) {
+        printf("$> ");
+        fgets(input, sizeof(input), stdin);
 
-    command = strtok(input, " ");
+        command = strtok(input, " \n\t");
 
-    while (command !=  NULL) {
-        printf("%s\n", command);
-        command = strtok(NULL, " ");
+        while (command != NULL) {
+            printf("%s", command);
+
+            if (strcmp(command, "exit") == 0) {
+                return 0;
+            }
+            command = strtok(NULL, " ");
+
+            if (command != NULL) {
+                printf("\n");
+            }
+        }
     }
-
-    return 0;
 }
