@@ -9,7 +9,7 @@ int main()
     pid = fork();
 
     if (pid == 0) {
-        execv("/bin/ls",  (char *[]){ "ls", "-a" , "/home/constantin", NULL});
+        execv("/bin/ls",  (char *[]){ "ls", "-a" , "/home/constantin"});
     }
     else {
         waitpid(pid, &status, WUNTRACED);
