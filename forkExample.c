@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include <sys/wait.h>
 
-int forkExample()
+int main()
 {
-    int* status;
+    int status;
     int pid;
     pid = fork();
 
     if (pid == 0) {
-        execv("/bin/ls",  (char *[]){ "/bin/ls", "-l" , "/home/constantin"});
+        execv("/bin/ls",  (char *[]){ "ls", "-a" , "/home/constantin", NULL});
     }
     else {
         waitpid(pid, &status, WUNTRACED);
