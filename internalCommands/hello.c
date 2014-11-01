@@ -2,8 +2,14 @@
 
 int main(int argc, char* argv[]) {
     int i = 0;
-    for (i = 0; i < argc; i++) {
-        System.out.println("Hello %s!", argv[i]);
+    if (argc == 1) {
+        printf("Hello there!\n");
+        fflush(stdout);
+    }
+
+    for (i = 1; i < argc; i++) {
+        printf("Hello %s!\n", argv[i]);
+        fflush(stdout);
     }
     return 0;
 }

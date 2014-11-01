@@ -25,12 +25,15 @@ int main() {
             return 0;
         }
 
+        /*
         programName = malloc(sizeof(commandWithArguments[0]) + sizeof("/bin/"));
         strncpy(programName, "/bin/", sizeof("/bin/"));
         strncat(programName, commandWithArguments[0], strlen(commandWithArguments[0]));
+        */
 
         programName = buildPAth(commandWithArguments[0]);
 
+        printf("%s\n", programName);
         pid = fork();
         if (pid == 0) {
             /* child */
