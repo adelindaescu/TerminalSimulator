@@ -14,9 +14,9 @@ char* buildPath(char* programName) {
     strncat(localCommandPath, programName, strlen(programName));
 
     if (lstat(localCommandPath, &info) != 0) {
-        // file does not exist in local directory
+        /* file does not exist in local directory */
         if (errno == ENOENT) {
-            // search file in /bin
+            /* search file in /bin */
             pathAndName = malloc(strlen(programName) + sizeof("/bin/"));
             strncpy(pathAndName, "/bin/", sizeof("/bin/"));
             strncat(pathAndName, programName, strlen(programName));
