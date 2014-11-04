@@ -1,1 +1,1 @@
-char* buildPAth(char* programName);
+char* buildPath(char* programName);

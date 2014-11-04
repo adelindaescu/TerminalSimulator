@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 
-char* buildPAth(char* programName) {
+char* buildPath(char* programName) {
     char* pathAndName;
     struct stat info;
     char* localCommandPath;
@@ -33,3 +33,4 @@ char* buildPAth(char* programName) {
     strncat(pathAndName, programName, strlen(programName));
     return pathAndName;
 }
+

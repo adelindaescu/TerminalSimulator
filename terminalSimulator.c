@@ -25,7 +25,7 @@ int main() {
             return 0;
         }
 
-        programName = buildPAth(commandWithArguments[0]);
+        programName = buildPath(commandWithArguments[0]);
 
         printf("%s\n", programName);
         pid = fork();
@@ -53,3 +53,4 @@ int main() {
         }
     }
 }
+
