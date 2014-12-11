@@ -21,13 +21,18 @@ int main() {
         numberOfWords = 0;
         parseString(input, &commandWithArguments, &numberOfWords);
 
+        /* no command was inserted */
+        if (commandWithArguments[0] == NULL) {
+            free(commandWithArguments);
+            continue;
+        }
+
         if (strcmp(commandWithArguments[0], "exit") == 0) {
             return 0;
         }
 
         programName = buildPath(commandWithArguments[0]);
 
-        printf("%s\n", programName);
         pid = fork();
         if (pid == 0) {
             /* child */
