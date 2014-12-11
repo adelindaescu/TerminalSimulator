@@ -37,7 +37,9 @@ int main() {
             /* parent */
             waitpid(pid, &status, WUNTRACED);
 
-            free(programName);
+            if (programName != NULL) {
+                free(programName);
+            }
 
             /* free memory for each word in the array */
             for (i = 0; i < numberOfWords; i++) {
@@ -52,6 +54,5 @@ int main() {
             }
         }
     }
-	// comm 3
 }
 
