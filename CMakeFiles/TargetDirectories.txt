@@ -1,0 +1,2 @@
+/home/adelin/projects/TerminalEmulator/CMakeFiles/TerminalSimulator.dir
+/home/adelin/projects/TerminalEmulator/CMakeFiles/hello.dir

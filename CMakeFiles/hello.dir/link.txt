@@ -1,0 +1,1 @@
+/usr/bin/cc      CMakeFiles/hello.dir/internalCommands/hello.c.o  -o hello -rdynamic 

@@ -1,0 +1,1 @@
+/usr/bin/cc      CMakeFiles/TerminalSimulator.dir/parser.c.o CMakeFiles/TerminalSimulator.dir/pathBuilder.c.o CMakeFiles/TerminalSimulator.dir/terminalSimulator.c.o  -o TerminalSimulator -rdynamic 
