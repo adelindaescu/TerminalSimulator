@@ -11,10 +11,11 @@
  ** Description: Implementation of the UNIX tail command;
  **
  ********************************************************************************/
- #include <stdio.h>
- #include <stdlib.h>
- #include <unistd.h>
- #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <getopt.h>
 
 
 int main(int argc, char ** argv) {
@@ -28,39 +29,37 @@ int main(int argc, char ** argv) {
      * Define text help and
      * version commands;
      */
-    char * const help = "Usage: tail [PATH]\n Show file contents.\n\nParameters:\n\t-h, shows this help\n\t-u, shows version and author\n\t-c, number of lines to show\n";
+    char * const help = "Usage: tail [PATH]\n Show file contents.\n\nParameters:\n\t-h, shows this help\n\t-u, shows version and author\n\t-n, number of lines to show\n";
     char * const author = " Author: Adelin Daescu\n Version: 1\n";
 
     // Reseting getopt internal index;
     optind = 0;
 
-    while ((o = getopt(argc, argv, "hucvq")) != -1) {
+    while ((o = getopt(argc, argv, "hunvq")) != -1) {
         switch(o) {
-          case 'q':
-              break;
-          case 'v':
-              printf("=====%s=====\n", argv[argc-1]);
-              fflush(stdout);
-              break;
-          case 'h':
-              fprintf(stdout, "%s\n",help);
-              return 0;
-              break;
-          case 'u':
-              fprintf(stdout, "%s\n", author);
-              return 0;
-              break;
-          case 'c':
-              if (optarg) {
-                printf("%d",optarg);
-                   nlines = (int)optarg;
-              break;
-              }
+            case 'q':
+                break;
+            case 'v':
+                printf("=====%s=====\n", argv[argc-1]);
+                fflush(stdout);
+                break;
+            case 'h':
+                fprintf(stdout, "%s\n",help);
+                return 0;
+            case 'u':
+                fprintf(stdout, "%s\n", author);
+                return 0;
+            case 'n':
+                if (optarg) {
+                    printf("%d",optarg);
+                    nlines = (int)optarg;
+                    break;
+                }
 
-          case '?':
-              return 1;
-          default:
-              abort();
+            case '?':
+                return 1;
+            default:
+                abort();
         }
     }
 
