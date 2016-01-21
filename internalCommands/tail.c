@@ -35,7 +35,7 @@ int main(int argc, char ** argv) {
     // Reseting getopt internal index;
     optind = 0;
 
-    while ((o = getopt(argc, argv, "hunvq")) != -1) {
+    while ((o = getopt(argc, argv, "hun:vq")) != -1) {
         switch(o) {
             case 'q':
                 break;
@@ -51,8 +51,8 @@ int main(int argc, char ** argv) {
                 return 0;
             case 'n':
                 if (optarg) {
-                    printf("%d",optarg);
-                    nlines = (int)optarg;
+
+                    nlines = atoi(optarg);
                     break;
                 }
 
