@@ -11,10 +11,10 @@
  ** Description: Implementation of the UNIX tail command;
  **
  ********************************************************************************/
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
+ #include <string.h>
 
 
 int main(int argc, char ** argv) {
@@ -34,29 +34,33 @@ int main(int argc, char ** argv) {
     // Reseting getopt internal index;
     optind = 0;
 
-    while ((o = getopt(argc, argv, "hucv")) != -1) {
+    while ((o = getopt(argc, argv, "hucvq")) != -1) {
         switch(o) {
-            //case 'v':
-            //printf("=====%s=====", argv[argc-1]);
-            //continue;
-            case 'h':
-                fprintf(stdout, "%s\n",help);
-                return 0;
-                break;
-            case 'u':
-                fprintf(stdout, "%s\n", author);
-                return 0;
-                break;
-            case 'c':
-                if (optarg) {
-                    printf("%d",optarg);
-                    nlines = (int)optarg;
-                }
-                //break;
-            case '?':
-                return 1;
-            default:
-                abort();
+          case 'q':
+              break;
+          case 'v':
+              printf("=====%s=====\n", argv[argc-1]);
+              fflush(stdout);
+              break;
+          case 'h':
+              fprintf(stdout, "%s\n",help);
+              return 0;
+              break;
+          case 'u':
+              fprintf(stdout, "%s\n", author);
+              return 0;
+              break;
+          case 'c':
+              if (optarg) {
+                printf("%d",optarg);
+                   nlines = (int)optarg;
+              break;
+              }
+
+          case '?':
+              return 1;
+          default:
+              abort();
         }
     }
 
@@ -65,8 +69,6 @@ int main(int argc, char ** argv) {
 
         return 1;
     }
-    //if((getopt(argc, argv, "hucv")=='v'))
-    //  printf("=====%s=====", argv[argc-1]);
     const char *filePath = argv[argc-1];
 
     file = fopen(filePath, "r");
@@ -76,15 +78,11 @@ int main(int argc, char ** argv) {
         fprintf(stderr,"Error opening file: %s\n", filePath);
         return 1;
     }
-    //if(getopt(argc, argv, "v") !=-1)
-    //printf("=====%s=====", filePath);
     off_t fposition;
     fseek(file, 0, SEEK_END);
     fposition = ftell(file);
     off_t index = fposition;
     off_t end = fposition;
-    // if (strcmp((o=getopt(argc, argv, "hucv")),'v')==0)
-    //     printf("=====%s=====", argv[argc-1]);
     for(index; index >= 0; index--)
     {
         cbyte= fgetc(file);
