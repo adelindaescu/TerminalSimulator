@@ -19,7 +19,7 @@
 
 
 int main(int argc, char ** argv) {
-    int o;
+    int o,b = 4096;
     long countlines= 0;
     char cbyte;
     FILE *file;
@@ -29,13 +29,13 @@ int main(int argc, char ** argv) {
      * Define text help and
      * version commands;
      */
-    char * const help = "Usage: tail [PATH]\n Show file contents.\n\nParameters:\n\t-h, shows this help\n\t-u, shows version and author\n\t-n, number of lines to show\n";
+    char * const help = "Usage: tail [PARAMS] [PATH]\n Show file contents.\n\nParameters:\n\t-h, shows this help\n\t-u, shows version and author\n\t-n, number of lines to show\n\t-c, number of bytes to show\n\t-v, always shows the header(name) of the file\n\t-q, never shows the header(name) of the file";
     char * const author = " Author: Adelin Daescu\n Version: 1\n";
 
     // Reseting getopt internal index;
     optind = 0;
 
-    while ((o = getopt(argc, argv, "hun:vq")) != -1) {
+    while ((o = getopt(argc, argv, "hun:c:vq")) != -1) {
         switch(o) {
             case 'q':
                 break;
@@ -54,6 +54,12 @@ int main(int argc, char ** argv) {
 
                     nlines = atoi(optarg);
                     break;
+                }
+            case 'c':
+                if(optarg){
+                  b = atoi(optarg);
+                  printf("%d\n",b);
+                  break;
                 }
 
             case '?':
@@ -100,10 +106,10 @@ int main(int argc, char ** argv) {
     int fd;
     fd = fileno(file);
     int nread;
-    char buffer[4096];
+    char buffer[b];
     lseek(fd, (fposition + 1), SEEK_SET);
 
-    while((nread = read(fd, buffer, 4096)) > 0)
+    while((nread = read(fd, buffer, b)) > 0)
     {
         write(STDOUT_FILENO, buffer, nread);
     }
