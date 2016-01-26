@@ -33,4 +33,3 @@ char* buildPath(char* programName) {
     strncat(pathAndName, programName, strlen(programName));
     return pathAndName;
 }
-

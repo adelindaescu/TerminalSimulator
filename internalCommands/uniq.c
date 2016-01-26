@@ -25,11 +25,12 @@ int main(int argc, char ** argv) {
     * Define text help and
     * version commands;
     */
-   char * const help = "Usage: uniq [PARAMS] [PATH]\n Show file contents.\n\nParameters:\n\t-h, shows this help\n\t-a, shows version and author\n\t-n, number of lines to show\n";
+   char * const help = "Usage: uniq [PARAMS] [PATH]\n Show file contents.\n\nParameters:\n\t-h, shows this help\n\t-a, shows version and author\n\t-n, number of lines to show\n\t-d, shows only duplicated lines\n\t-u, prints only unique lines.\n\t-i, ignores the case of the letters.";
    char * const author = " Author: Adelin Daescu\n Version: 1\n";
 
    while ((o = getopt(argc, argv, "ahuid")) != -1) {
        switch(o) {
+          case 'h':
                fprintf(stdout, "%s\n",help);
                return 0;
           case 'a':
